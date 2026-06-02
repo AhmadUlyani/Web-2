@@ -17,7 +17,7 @@
 
                 <div class="form-group">
                     <label>Member</label>
-                    <select name="id_member" required>
+                    <select name="id_member">
                         <option value="">-- Pilih Member --</option>
 
                         @foreach ($members as $m)
@@ -27,6 +27,7 @@
                             </option>
                         @endforeach
                     </select>
+
                     @error('id_member')
                         <p class="error">{{ $message }}</p>
                     @enderror
@@ -34,7 +35,7 @@
 
                 <div class="form-group">
                     <label>Buku</label>
-                    <select name="id_buku" required>
+                    <select name="id_buku">
                         <option value="">-- Pilih Buku --</option>
 
                         @foreach ($bukus as $b)
@@ -53,8 +54,8 @@
                 <div class="form-group">
                     <label>Tgl Pinjam</label>
                     <input type="date" name="tgl_pinjam" id="tgl_pinjam"
-                        value="{{ old('tgl_pinjam', $data->tgl_pinjam ?? '') }}" required
-                        onchange="updateMinKembali(this.value)">
+                        value="{{ old('tgl_pinjam', $data->tgl_pinjam ?? '') }}" onchange="updateMinKembali(this.value)">
+
                     @error('tgl_pinjam')
                         <p class="error">{{ $message }}</p>
                     @enderror
@@ -65,6 +66,7 @@
                     <input type="date" name="tgl_kembali" id="tgl_kembali"
                         value="{{ old('tgl_kembali', $data->tgl_kembali ?? '') }}"
                         min="{{ old('tgl_pinjam', $data->tgl_pinjam ?? '') }}">
+
                     @error('tgl_kembali')
                         <p class="error">{{ $message }}</p>
                     @enderror
@@ -80,11 +82,14 @@
 
     <script>
         function updateMinKembali(tglPinjam) {
-            document.getElementById('tgl_kembali').min = tglPinjam;
+            const inputKembali = document.getElementById('tgl_kembali');
 
-            const tglKembali = document.getElementById('tgl_kembali').value;
-            if (tglKembali && tglKembali < tglPinjam) {
-                document.getElementById('tgl_kembali').value = '';
+            inputKembali.min = tglPinjam;
+
+            const tglKembali = inputKembali.value;
+
+            if (tglKembali && tglPinjam && tglKembali < tglPinjam) {
+                inputKembali.value = '';
             }
         }
     </script>

@@ -34,7 +34,7 @@ class PeminjamanController extends Controller
             'id_member' => 'required|exists:member,id_member',
             'id_buku' => 'required|exists:buku,id',
             'tgl_pinjam' => 'required|date',
-            'tgl_kembali' => 'nullable|date|after_or_equal:tgl_pinjam',
+            'tgl_kembali' => 'required|date|after_or_equal:tgl_pinjam',
         ], [
             'id_member.required' => 'Member wajib dipilih.',
             'id_member.exists' => 'Member tidak ditemukan.',
@@ -43,9 +43,10 @@ class PeminjamanController extends Controller
             'id_buku.exists' => 'Buku tidak ditemukan.',
 
             'tgl_pinjam.required' => 'Tanggal pinjam wajib diisi.',
-            'tgl_pinjam.date' => 'Tanggal pinjam harus berupa tanggal.',
+            'tgl_pinjam.date' => 'Tanggal pinjam harus berupa tanggal yang valid.',
 
-            'tgl_kembali.date' => 'Tanggal kembali harus berupa tanggal.',
+            'tgl_kembali.required' => 'Tanggal kembali wajib diisi.',
+            'tgl_kembali.date' => 'Tanggal kembali harus berupa tanggal yang valid.',
             'tgl_kembali.after_or_equal' => 'Tanggal kembali tidak boleh lebih kecil dari tanggal pinjam.',
         ]);
 
@@ -74,7 +75,7 @@ class PeminjamanController extends Controller
             'id_member' => 'required|exists:member,id_member',
             'id_buku' => 'required|exists:buku,id',
             'tgl_pinjam' => 'required|date',
-            'tgl_kembali' => 'nullable|date|after_or_equal:tgl_pinjam',
+            'tgl_kembali' => 'required|date|after_or_equal:tgl_pinjam',
         ], [
             'id_member.required' => 'Member wajib dipilih.',
             'id_member.exists' => 'Member tidak ditemukan.',
@@ -83,9 +84,10 @@ class PeminjamanController extends Controller
             'id_buku.exists' => 'Buku tidak ditemukan.',
 
             'tgl_pinjam.required' => 'Tanggal pinjam wajib diisi.',
-            'tgl_pinjam.date' => 'Tanggal pinjam harus berupa tanggal.',
+            'tgl_pinjam.date' => 'Tanggal pinjam harus berupa tanggal yang valid.',
 
-            'tgl_kembali.date' => 'Tanggal kembali harus berupa tanggal.',
+            'tgl_kembali.required' => 'Tanggal kembali wajib diisi.',
+            'tgl_kembali.date' => 'Tanggal kembali harus berupa tanggal yang valid.',
             'tgl_kembali.after_or_equal' => 'Tanggal kembali tidak boleh lebih kecil dari tanggal pinjam.',
         ]);
 

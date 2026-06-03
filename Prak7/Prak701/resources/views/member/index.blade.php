@@ -9,6 +9,12 @@
             <a href="{{ route('member.create') }}" class="btn btn-primary">+ Tambah Member</a>
         </div>
 
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <table>
             <thead>
                 <tr>

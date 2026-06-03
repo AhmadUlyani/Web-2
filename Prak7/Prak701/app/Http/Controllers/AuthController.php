@@ -26,7 +26,9 @@ class AuthController extends Controller
         $user = UserAccount::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return back()->with('error', 'Email atau password salah.');
+            return back()
+                ->withInput($request->only('email', 'password'))
+                ->with('error', 'Email atau password salah.');
         }
 
         session([

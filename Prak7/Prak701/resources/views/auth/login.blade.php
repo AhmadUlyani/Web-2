@@ -43,7 +43,7 @@
 
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password">
+                    <input type="password" name="password" value="{{ old('password') }}">
                     @error('password')
                         <p class="error">{{ $message }}</p>
                     @enderror
